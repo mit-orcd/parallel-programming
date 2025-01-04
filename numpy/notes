@@ -1,0 +1,10 @@
+
+# set env
+module load miniforge/23.11.0-0
+
+# Install only once
+pip install numpy
+
+# run
+time python mat_mult.py
+

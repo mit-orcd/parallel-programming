@@ -1,0 +1,5 @@
+References:
+https://github.com/pytorch/tutorials/blob/main/intermediate_source/TP_tutorial.rst
+https://github.com/pytorch/examples/tree/main/distributed/tensor_parallelism
+https://pytorch.org/docs/stable/distributed.tensor.parallel.html
+

@@ -1,0 +1,14 @@
+node2704
+node2704
+node2704
+node2704
+Enter the number of intervals: (0 quits) pi is approximately 3.1415926544231243, Error is 0.0000000008333312
+[node2704:2216110] *** Process received signal ***
+[node2704:2216110] Signal: Segmentation fault (11)
+[node2704:2216110] Signal code: Invalid permissions (2)
+[node2704:2216110] Failing at address: 0x14b8edc8b85f
+/var/spool/slurmd/job60767575/slurm_script: line 11: 2216110 Segmentation fault      (core dumped) mpirun -np 4 ./calc_pi_mpi < input
+
+real	0m9.542s
+user	0m0.170s
+sys	0m0.494s

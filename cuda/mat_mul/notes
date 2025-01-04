@@ -1,0 +1,6 @@
+# compile
+module load cuda/12.4
+nvcc mat_mul_global.cu -o mat_mul_global
+nvcc mat_mul_shared.cu -o mat_mul_shared
+nvcc -lcublas mat_mul_cublas.cu -o mat_mul_cublas
+
