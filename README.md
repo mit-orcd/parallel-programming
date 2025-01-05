@@ -1,5 +1,5 @@
 # Introduction to Parallel Programming
-Introduction to Parallel Programming is an MIT course. These are materials for the course.
+Introduction to Parallel Programming is an IAP course at MIT.
 
 ## Description:
 
