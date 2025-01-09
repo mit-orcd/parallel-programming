@@ -3,7 +3,7 @@
 #include <omp.h>
 
 int main() {
-  long long int i, n=50000000;
+  long long int i, n=100000000;
   float a=2.0;
   float x[n];
   float y[n];
