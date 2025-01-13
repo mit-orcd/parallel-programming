@@ -74,7 +74,7 @@ def train_base(args):
 
     trainset = cifar_trainset(args.local_rank)
 
-    engine, _, dataloader, __ = deepspeed.initialize(
+    engine, _, dataloader, __ = deepspeed.initialize(     # load and distribute data
         args=args,
         model=net,
         model_parameters=[p for p in net.parameters() if p.requires_grad],
@@ -90,15 +90,15 @@ def train_base(args):
 
     total_steps = args.steps * engine.gradient_accumulation_steps()
     step = 0
-    for micro_step in range(total_steps):
+    for micro_step in range(total_steps):    # train with data parallel
         batch = next(data_iter)
-        inputs = batch[0].to(engine.device)
+        inputs = batch[0].to(engine.device)    # send data to each GPU
         labels = batch[1].to(engine.device)
 
-        outputs = engine(inputs)
-        loss = criterion(outputs, labels)
-        engine.backward(loss)
-        engine.step()
+        outputs = engine(inputs)      # forward pass
+        loss = criterion(outputs, labels)   # loss function
+        engine.backward(loss)         # backward pass
+        engine.step()                 # optimize step
 
         if micro_step % engine.gradient_accumulation_steps() == 0:
             step += 1
@@ -128,7 +128,7 @@ def train_pipe(args, part='parameters'):
     # VGG also works :-)
     #net = vgg19(num_classes=10)
     net = AlexNet(num_classes=10)
-    net = PipelineModule(layers=join_layers(net),
+    net = PipelineModule(layers=join_layers(net),     # Set up pipe line parallel
                          loss_fn=torch.nn.CrossEntropyLoss(),
                          num_stages=args.pipeline_parallel_size,
                          partition_method=part,
@@ -136,7 +136,7 @@ def train_pipe(args, part='parameters'):
 
     trainset = cifar_trainset(args.local_rank)
 
-    engine, _, _, _ = deepspeed.initialize(
+    engine, _, _, _ = deepspeed.initialize(    # distribute data
         args=args,
         model=net,
         model_parameters=[p for p in net.parameters() if p.requires_grad],
@@ -149,11 +149,11 @@ def train_pipe(args, part='parameters'):
 if __name__ == '__main__':
     args = get_args()
 
-    deepspeed.init_distributed(dist_backend=args.backend)
+    deepspeed.init_distributed(dist_backend=args.backend)   # init communication protocal, default NCCL
     args.local_rank = int(os.environ['LOCAL_RANK'])
-    torch.cuda.set_device(args.local_rank)
+    torch.cuda.set_device(args.local_rank)     # Set GPU ID
 
     if args.pipeline_parallel_size == 0:
-        train_base(args)
+        train_base(args)     # train without pipeline parallel, only data parallel
     else:
-        train_pipe(args)
+        train_pipe(args)     # train with hybrid data and pipeline parallel
