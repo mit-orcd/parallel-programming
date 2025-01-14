@@ -3,3 +3,4 @@ notes-dl
 */*/data
 */*/output
 */*/__pycache__
+*/*/checkpoint.pt
