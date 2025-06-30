@@ -1,17 +1,19 @@
 #!/bin/bash
-#SBATCH -p mit_normal_gpu #ou_bcs_low  # mit_normal_gpu
+#SBATCH -p mit_preemptable # mit_normal_gpu 
 #SBATCH --job-name=ddp
 #SBATCH -N 1
-#SBATCH -n 2
-#SBATCH --gres=gpu:2
+#SBATCH -t 60
+#SBATCH -n 4
+#SBATCH --mem=20GB
+#SBATCH --gres=gpu:4    # h100:4 , 4
 #SBATCH -o output/%N-%J.out
 
 module load miniforge/23.11.0-0
 source activate ds
 
-#usage: multigpu.py [-h] [--batch_size BATCH_SIZE] total_epochs save_every
-echo "======== Run on one GPU ======"
-python single_gpu.py --batch_size=1024 100 20
+# Usage: multigpu.py [-h] [--batch_size BATCH_SIZE] total_epochs save_every
 echo "======== Run on multiple GPUs ======"
 python multigpu.py --batch_size=1024 100 20
+echo "======== Run on multiple GPUs with torchrun ======"
+torchrun --nnodes=$SLURM_NNODES --nproc_per_node=$SLURM_NTASKS --rdzv_id=$SLURM_JOB_ID --rdzv_endpoint="localhost:1234" multigpu_torchrun.py --batch_size=1024 100 20
 
