@@ -4,12 +4,14 @@ int main(argc,argv)
 int argc;
 char *argv[];
 {
-    int n, myid, numprocs, i;
+    //int n, myid, numprocs, i;
+    int myid, numprocs, i;
+    long long int n=20000000;
     double PI25DT = 3.141592653589793238462643;
     double pi, h, sum, x;
 
-    printf("Enter the number of intervals: (0 quits) ");
-    scanf("%d",&n);
+   // printf("Enter the number of intervals: (0 quits) ");
+   // scanf("%d",&n);
   
 	h   = 1.0 / (double) n;
 	sum = 0.0;

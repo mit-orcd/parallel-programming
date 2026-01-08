@@ -3,7 +3,7 @@
 
 int main() {
   int i;
-  long long int n=100000000;
+  long long int n=10000000;
   float a=2.0;
   float x[n];
   float y[n];

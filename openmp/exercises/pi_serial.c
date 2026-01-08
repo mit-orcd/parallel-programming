@@ -4,7 +4,7 @@
 
 int main() {
   int i;
-  long long int n=100000000;
+  long long int n=500000000;
   clock_t start_time, end_time;
   double x, pi;
   double sum = 0.0;

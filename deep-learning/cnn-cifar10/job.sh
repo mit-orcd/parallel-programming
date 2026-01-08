@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH -p mit_normal_gpu   # ou_bcs_low 
-#SBATCH --gres=gpu:h100:1   # h100, l40s
+#SBATCH --gres=gpu:1   # h100, l40s
 #SBATCH -t 30
 #SBATCH -n 2
 #SBATCH --mem=30GB

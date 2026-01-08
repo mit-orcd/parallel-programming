@@ -16,8 +16,7 @@ int main() {
   }
 
   start_time = omp_get_wtime();
-//#pragma omp parallel for schedule(static,100) private(i)
-#pragma omp parallel for private(i)
+#pragma omp parallel for private(i) shared(a)
   for (i = 0; i < n; i++){
     y[i] = a*x[i] + y[i];
   }

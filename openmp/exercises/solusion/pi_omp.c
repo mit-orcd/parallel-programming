@@ -3,7 +3,7 @@
 #include <omp.h>
 
 int main() {
-  long long int i, n=50000000000;
+  long long int i, n=500000000;
   double start_time, end_time;
   double x, pi;
   double sum = 0.0;

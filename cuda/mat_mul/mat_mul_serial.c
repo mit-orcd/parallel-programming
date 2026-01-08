@@ -21,7 +21,7 @@ void multiply_matrices(float** a, float** b, float** c, int size) {
 }
 
 int main() {
-    int size = 3;  // Size of the square matrices
+    int size = 20480;  // Size of the square matrices
 
     // Allocate memory for matrices using pointers
     float** a = (float**)malloc(size * sizeof(float*));

@@ -38,7 +38,8 @@ int main() {
 
     // Set up the execution configuration (1D grid and block)
     int blockSize = 256;  // Number of threads per block
-    int numBlocks = (n + blockSize - 1) / blockSize;  // Number of blocks
+    //int numBlocks = (n + blockSize - 1) / blockSize;  // Number of blocks
+    int numBlocks = n / blockSize;  // Number of blocks
 
     // Create CUDA events for timing
     cudaEvent_t start, stop;

@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH -p ou_sloan_gpu   #  mit_normal_gpu # ou_bcs_low
+#SBATCH -p mit_preemptable  # mit_normal_gpu # ou_bcs_low
 #SBATCH -N 1
 #SBATCH -n 8
 #SBATCH --mem=30GB

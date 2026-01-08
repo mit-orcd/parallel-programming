@@ -6,7 +6,8 @@ int argc;
 char *argv[];
 {
 
-    int n, myid, numprocs, i;
+    int  myid, numprocs, i;
+    long long int n=20000000000;
     double PI25DT = 3.141592653589793238462643;
     double mypi, pi, h, sum, x;
 
